@@ -17,7 +17,7 @@ spring:
 server:
   port: 8081
 
-twilio:
-  account-sid: 
-  auth-token: 
-  from-number: 
+# twilio:
+#   account-sid: 
+#   auth-token: 
+#   from-number: 
