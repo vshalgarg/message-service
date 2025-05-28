@@ -6,7 +6,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: pankajdhami811@gmail.com
-    password: 
+    password: wxbliwzyjogmrrkx
     properties:
       mail:
         smtp:
@@ -17,7 +17,7 @@ spring:
 server:
   port: 8081
 
-# twilio:
-#   account-sid: 
-#   auth-token: 
-#   from-number: 
+twilio:
+   account-sid: AC166f00286cdab0d6f0a4e40137bcf0f6
+   auth-token: 10ba6f7b5e2b63a56ea7d1879c884a96
+   from-number: +16188364451

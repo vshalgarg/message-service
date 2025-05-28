@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.code.monks</groupId>
-	<artifactId>sms-api</artifactId>
+	<artifactId>message-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sms-api</name>
-	<description>sms services</description>
+	<name>Message Service</name>
+	<description>sms services for nukkad app</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -60,7 +60,6 @@
 			<artifactId>twilio</artifactId>
 			<version>9.15.1</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
