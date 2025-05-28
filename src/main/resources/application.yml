@@ -18,6 +18,6 @@ server:
   port: 8081
 
 twilio:
-  account-sid: AC166f00286cdab0d6f0a4e40137bcf0f6
-  auth-token: 63dabcbb1bf8a875df4bb7b4b6b28860
-  from-number: +16188364451
+  account-sid: 
+  auth-token: 
+  from-number: 
