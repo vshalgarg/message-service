@@ -8,15 +8,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class EmailService {
+public class EmailService implements MessageService<EmailRequestDto>{
 
-    private final JavaMailSender javaMailSender;
+    private final JavaMailSender mailSender;
 
-    public void sendEmail(EmailRequestDto emailRequest) {
+    @Override
+    public void sendMessage(EmailRequestDto emailRequest) {
+        if (emailRequest.getTo() == null || emailRequest.getMessage() == null) {
+            throw new IllegalArgumentException("Email or body cannot be null");
+        }
+
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(emailRequest.getEmail());
+        message.setTo(emailRequest.getTo());
         message.setSubject(emailRequest.getSubject());
-        message.setText(emailRequest.getBody());
-        javaMailSender.send(message);
+        message.setText(emailRequest.getMessage());
+
+        mailSender.send(message);
     }
 }

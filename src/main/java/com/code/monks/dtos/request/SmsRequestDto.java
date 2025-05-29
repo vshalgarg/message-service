@@ -5,20 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class EmailRequestDto implements MessageRequest{
-    private String toEmail;
-    private String subject;
-    private String body;
+@AllArgsConstructor
+public class SmsRequestDto implements MessageRequest{
+    private String toPhoneNumber;
+    private String message;
 
     @Override
     public String getTo() {
-        return toEmail;
+        return toPhoneNumber;
     }
 
     @Override
     public String getMessage() {
-        return body;
+        return message;
     }
 }
