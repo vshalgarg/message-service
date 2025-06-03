@@ -1,24 +1,9 @@
 package com.code.monks.dtos.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class EmailRequestDto implements MessageRequest{
-    private String toEmail;
+public class EmailRequestDto extends BaseMessageRequestDto{
+
     private String subject;
-    private String body;
-
-    @Override
-    public String getTo() {
-        return toEmail;
-    }
-
-    @Override
-    public String getMessage() {
-        return body;
-    }
 }
