@@ -2,7 +2,6 @@ package com.code.monks.Services.impl;
 
 import com.code.monks.Services.GenericMessageService;
 import com.code.monks.dtos.request.EmailRequestDto;
-import com.code.monks.enums.MessageTypeEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,24 +23,16 @@ public class EmailServiceImpl implements GenericMessageService<EmailRequestDto> 
     public void sendMessage(EmailRequestDto request) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(request.getRecipient());
-        String subject = "Welcome to Code Monks!";
-        String content = "Hi there!\n\nThank you for joining Code Monks.";
 
-        message.setSubject(subject);
-        message.setText(content);
+        message.setSubject(request.getSubject() != null ? request.getSubject() : "Welcome to Code Monks!");
+        message.setText(request.getContent() != null ? request.getContent() : "Hi there!\n\nThank you for joining Code Monks.");
+
         message.setFrom(senderEmail);
         try {
             mailSender.send(message);
             log.info("Email successfully sent to {}", request.getRecipient());
         } catch (Exception e) {
             log.error("Failed to send email to {}: {}", request.getRecipient(), e.getMessage());
-        }    }
-
-    public MessageTypeEnum getType() {
-        return MessageTypeEnum.EMAIL;
-    }
-
-    public Class<EmailRequestDto> getRequestClass() {
-        return EmailRequestDto.class;
+        }
     }
 }
