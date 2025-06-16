@@ -17,9 +17,9 @@ public class SmsServiceImpl implements GenericMessageService<SmsRequestDto> {
     private final TwilioConfig twilioConfig;
     public void sendMessage(SmsRequestDto request) {
         try {
-            log.info("Attempting to send SMS to {}", request.getRecipient());
+            log.info("Attempting to send SMS to {}", request.getPhoneNo());
             Message message =  Message.creator(
-                    new PhoneNumber(request.getRecipient()),
+                    new PhoneNumber(request.getPhoneNo()),
                     new PhoneNumber(twilioConfig.getFromNumber()),
                     request.getContent()
             ).create();

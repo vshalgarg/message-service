@@ -22,17 +22,20 @@ public class EmailServiceImpl implements GenericMessageService<EmailRequestDto> 
     @Override
     public void sendMessage(EmailRequestDto request) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(request.getRecipient());
-
-        message.setSubject(request.getSubject() != null ? request.getSubject() : "Welcome to Code Monks!");
-        message.setText(request.getContent() != null ? request.getContent() : "Hi there!\n\nThank you for joining Code Monks.");
+        message.setTo(request.getEmail());
+        message.setFrom(senderEmail);
+        message.setSubject(defaultIfNull(request.getSubject(), "Welcome to Code Monks!"));
+        message.setText(defaultIfNull(request.getBody(), "Hi there!\n\nThank you for joining Code Monks."));
 
         message.setFrom(senderEmail);
         try {
             mailSender.send(message);
-            log.info("Email successfully sent to {}", request.getRecipient());
+            log.info("Email successfully sent to {}", request.getEmail());
         } catch (Exception e) {
-            log.error("Failed to send email to {}: {}", request.getRecipient(), e.getMessage());
+            log.error("Failed to send email to {}: {}", request.getEmail(), e.getMessage());
         }
+    }
+    private String defaultIfNull(String value, String defaultValue) {
+        return (value == null || value.trim().isEmpty()) ? defaultValue : value;
     }
 }
